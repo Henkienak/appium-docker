@@ -1,11 +1,16 @@
 #!/bin/bash
 appium_version=$1
-tag=$2
+patched_chromedriver=$2
 
-docker build --build-arg APPIUM_VERSION=$appium_version -t testobject-appium .
+tag=$appium_version
+if [ "$patched_chromedriver" = true ]; then
+  tag=$tag-patched-chromedriver
+fi
 
-docker tag -f testobject-appium testobject/appium:$appium_version
-docker push testobject/appium:$appium_version
+docker build --build-arg APPIUM_VERSION=$appium_version --build-arg PATCHED_CHROMEDRIVER=$patched_chromedriver -t testobject-appium:$tag .
+    
+docker tag -f testobject-appium:$tag testobject/appium:$tag
+docker push testobject/appium:$tag
 
-docker tag -f testobject-appium quay.io/testobject/appium:$appium_version
-docker push quay.io/testobject/appium:$appium_version
+docker tag -f testobject-appium:$tag quay.io/testobject/appium:$tag
+docker push quay.io/testobject/appium:$tag
