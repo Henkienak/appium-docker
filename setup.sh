@@ -2,11 +2,9 @@
 
 echo "preparing appium version $APPIUM_VERSION with patched chromedriver $PATCHED_CHROMEDRIVER"
 
-if [[ $APPIUM_VERSION == 1.5.* ]]; then
-  echo "Installing java dependency"
-  apt-get update
-  apt-get -y install default-jdk
-fi
+echo "Installing java dependency"
+apt-get update
+apt-get -y install default-jdk
 
 appium_directory=/root/appium/appium/$APPIUM_VERSION
 if [ "$PATCHED_CHROMEDRIVER" = true ]; then
