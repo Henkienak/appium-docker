@@ -51,6 +51,12 @@ function patch_appium_1_4_16
     patch -p0 < /root/patches/0001-handover-custom-adb-port-to-chromedriver.patch;
 }
 
+function patch_appium_1_6_0
+{
+    echo "replacing 1.6.0 backported fixes"
+    cp -r patches/160_testobject/* $appium_directory
+}
+
 function configure_chromedriver_version
 {
     # custom chromedriver can be set for Appium as documented here:
@@ -69,6 +75,10 @@ install_appium
 
 if [ "$APPIUM_VERSION" == '1.4.16' ]; then
     patch_appium_1_4_16
+fi
+
+if [ "$APPIUM_VERSION" == '1.6.0' ]; then
+    patch_appium_1_6_0
 fi
 
 if [ "$PATCHED_CHROMEDRIVER" = true ]; then
