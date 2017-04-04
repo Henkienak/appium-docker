@@ -4,13 +4,7 @@ echo "preparing appium version $APPIUM_VERSION with patched chromedriver $PATCHE
 
 function set_appium_directory
 {
-    appium_directory=/root/appium/appium/$APPIUM_VERSION
-    if [ "$PATCHED_CHROMEDRIVER" = true ]; then
-	appium_directory=$appium_directory-patched-chromedriver
-    fi
-    if [ -n "$CHROMEDRIVER_VERSION" ]; then
-	appium_directory=$appium_directory-updated-chromedriver
-    fi
+    appium_directory=/root/appium/appium/$DIR_NAME
 }
 
 function install_jdk

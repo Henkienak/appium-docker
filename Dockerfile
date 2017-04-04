@@ -1,6 +1,7 @@
 FROM node:5.12.0
 
 ARG APPIUM_VERSION
+ARG DIR_NAME
 ARG PATCHED_CHROMEDRIVER
 ARG CHROMEDRIVER_VERSION=""
 
@@ -8,3 +9,4 @@ ADD . /root
 WORKDIR /root
 
 RUN /root/setup.sh
+VOLUME /root/appium/appium/$DIR_NAME
