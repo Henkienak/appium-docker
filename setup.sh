@@ -58,6 +58,14 @@ function configure_chromedriver_version
     echo "chromedriver_version=$CHROMEDRIVER_VERSION" >> $HOME/.npmrc
 }
 
+function add_wda_if_exists
+{
+	if [ -f "WDA/$APPIUM_VERSION/WebDriverAgent.ipa"]; then
+		echo "adding WDA for appium version $APPIUM_VERSION"
+		cp WDA/$APPIUM_VERSION/WebDriverAgent.ipa $appium_directory/node_modules/appium-xcuitest-driver/WebDriverAgent.ipa
+	fi
+}
+
 install_jdk
 set_appium_directory
 
@@ -66,6 +74,7 @@ if [ -n "$CHROMEDRIVER_VERSION" ]; then
 fi
 
 install_appium
+add_wda_if_exists
 
 if [ "$APPIUM_VERSION" == '1.4.16' ]; then
     patch_appium_1_4_16
