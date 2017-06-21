@@ -62,7 +62,7 @@ function add_wda_if_exists
 {
 	if [ -f "WDA/$APPIUM_VERSION/WebDriverAgent.ipa" ]; then
 		echo "adding WDA for appium version $APPIUM_VERSION"
-		cp WDA/$APPIUM_VERSION/WebDriverAgent.ipa $appium_directory/node_modules/appium-xcuitest-driver/WebDriverAgent.ipa
+		cp WDA/$APPIUM_VERSION/WebDriverAgent.ipa "$appium_directory node_modules/appium-xcuitest-driver/WebDriverAgent.ipa"
 	fi
 }
 
