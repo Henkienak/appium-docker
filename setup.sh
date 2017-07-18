@@ -16,7 +16,7 @@ function install_jdk
 
 function install_appium
 {
-    npm install appium@$APPIUM_VERSION
+    npm install --legacy-bundling appium@$APPIUM_VERSION
     mkdir -p /root/appium/appium/
     mv /root/node_modules/appium $appium_directory
     mkdir $appium_directory/build/SafariLauncher
