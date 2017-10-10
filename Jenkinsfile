@@ -50,16 +50,6 @@ node {
         }
     }
 
-    stage("publish") {
-        try {
-            sh "git tag -m 'built by pipeline' -a ${tag}"
-            sh "git push origin ${tag}"
-        } catch (err) {
-            notifySlack("Docker publish `${tag}` failed: ${err}", "bad")
-            throw err
-        }
-    }
-
     deleteDir() // don't want to waste space after a build
     notifySlack("Build Appium Version `${tag}` successful")
 
