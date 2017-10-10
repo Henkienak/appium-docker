@@ -36,7 +36,7 @@ node {
 
     stage("build & push") {
         try {
-            docker.build("appium-builder") {
+            docker.build("appium-builder").inside {
 				def command = "build.sh -a ${params.APPIUM_VERSION} -d ${params.APPIUM_VERSION} -p ${params.PATCHED_CHROMEDRIVER} -t ${tag} -r true"
 				if (params.CHROMEDRIVER_VERSION) {
 					command += " -c ${params.CHROMEDRIVER_VERSION}"
