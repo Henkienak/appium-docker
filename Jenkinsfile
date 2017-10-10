@@ -41,7 +41,7 @@ node {
 				command += " --build-arg PATCHED_CHROMEDRIVER=${params.CHROMEDRIVER_VERSION}"
 			}
 
-            def appiumImage = docker.build("testobject-appium:${version}").inside(command)
+            def appiumImage = docker.build("testobject-appium:${tag}").inside(command)
 			
         } catch (err) {
             notifySlack("Appium build of `${params.APPIUM_VERSION}` failed: ${err}", "bad")
