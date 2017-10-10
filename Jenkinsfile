@@ -36,14 +36,13 @@ node {
 
     stage("build & push") {
         try {
-            docker.build("appium-builder").inside {
-				def command = "build.sh -a ${params.APPIUM_VERSION} -d ${params.APPIUM_VERSION} -p ${params.PATCHED_CHROMEDRIVER} -t ${tag} -r true"
-				if (params.CHROMEDRIVER_VERSION) {
-					command += " -c ${params.CHROMEDRIVER_VERSION}"
-				}
+			def command = "--build-arg APPIUM_VERSION=${params.APPIUM_VERSION} --build-arg DIR_NAME=${params.APPIUM_VERSION} --build-arg PATCHED_CHROMEDRIVER=${PATCHED_CHROMEDRIVER}"
+			if (params.CHROMEDRIVER_VERSION) {
+				command += " --build-arg PATCHED_CHROMEDRIVER=${params.CHROMEDRIVER_VERSION}"
+			}
 
-                sh command
-            }
+            def appiumImage = docker.build("testobject-appium:${version}").inside(command)
+			
         } catch (err) {
             notifySlack("Appium build of `${params.APPIUM_VERSION}` failed: ${err}", "bad")
             throw err
