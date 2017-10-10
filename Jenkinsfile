@@ -14,7 +14,7 @@ node {
 
     deleteDir()
 
-    def tag = params.APPIUM_VERSION;
+    def tag = params.APPIUM_VERSION
 
 	if (params.PATCHED_CHROMEDRIVER) {
 		println "Using patched chromedriver for `${params.APPIUM_VERSION}` "
@@ -43,7 +43,7 @@ node {
 				dockerBuildCommand += " --build-arg PATCHED_CHROMEDRIVER=${params.CHROMEDRIVER_VERSION}"
 			}
 
-			dockerBuildCommand = " ."
+			dockerBuildCommand += " ."
 			sh dockerBuildCommand
 			
         } catch (err) {
