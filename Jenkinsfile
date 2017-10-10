@@ -40,7 +40,7 @@ node {
 			def dockerBuildCommand = "docker build -t testobject-appium:${tag} --build-arg APPIUM_VERSION=${params.APPIUM_VERSION} --build-arg DIR_NAME=${params.APPIUM_VERSION} --build-arg PATCHED_CHROMEDRIVER=${PATCHED_CHROMEDRIVER}"
 			
 			if (params.CHROMEDRIVER_VERSION) {
-				dockerBuildCommand += " --build-arg PATCHED_CHROMEDRIVER=${params.CHROMEDRIVER_VERSION}"
+				dockerBuildCommand += " --build-arg CHROMEDRIVER_VERSION=${params.CHROMEDRIVER_VERSION}"
 			}
 
 			dockerBuildCommand += " ."
