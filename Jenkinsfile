@@ -30,7 +30,7 @@ node {
 				addIfWDAExists(params.APPIUM_VERSION)
 				copyNodeBinaries()
 			}
-			sh "docker build -t testobject-appium:${params.APPIUM_VERSION} --build-arg APPIUM_VERSION=${params.APPIUM_VERSION} appium/Dockerfile"
+			sh "docker build -t testobject-appium:${params.APPIUM_VERSION} --build-arg APPIUM_VERSION=${params.APPIUM_VERSION} appium"
 		} catch (err) {
 			notifySlack("Appium build of `${params.APPIUM_VERSION}` failed: ${err}", "bad")
 			throw err
